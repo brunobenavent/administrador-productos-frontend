@@ -1,7 +1,13 @@
 import { Link, Form } from 'react-router-dom';
 
-export async function action() {
-  console.log('desde actions ...')
+export async function action({request}) {
+  const data = Object.fromEntries(await request.formData())
+  console.log(data)
+  let error = ''
+
+  if(Object.values(data).includes('')){
+    error = 'Todos los campos son obligatorios'
+  }
 
   return {}
 }
